@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>McKinley Irvin × Legalboards | MI Dissolution Intake</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --primary:#3E5972;
+  --secondary:#06C6C9;
+  --highlight:#8D63EF;
+  --ink:#263747;
+  --muted:#6b7f91;
+  --soft:#F5F8FB;
+  --soft2:#ECFAFB;
+  --soft3:#F4EEFF;
+  --line:#DDE7EF;
+  --white:#fff;
+  --ok:#16A36A;
+  --warn:#F2A928;
+  --danger:#D34F64;
+  --shadow:0 20px 60px rgba(62,89,114,.15);
+  --radius:28px;
+}
+*{box-sizing:border-box}
+html,body{
+  height:100%;margin:0;overflow:hidden;
+  background:linear-gradient(135deg,#F8FBFD 0%,#EEF8FA 45%,#F5F1FF 100%);
+  color:var(--ink);font-family:Roboto,Arial,sans-serif;
+}
+button{font-family:Roboto,Arial,sans-serif}
+.deck{height:100vh;width:100vw;display:grid;grid-template-rows:72px 1fr 64px}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;padding:0 34px;
+  border-bottom:1px solid rgba(62,89,114,.1);background:rgba(255,255,255,.74);backdrop-filter:blur(14px)
+}
+
+.brand{display:flex;align-items:center;gap:14px;color:var(--primary)}
+.brandText{font-weight:800;font-family:Nunito,Roboto,sans-serif;letter-spacing:.2px;font-size:18px}
+.brandDivider{height:26px;width:1px;background:rgba(62,89,114,.18)}
+.brandLogo{height:30px;width:auto;display:block}
+.footerMark{display:flex;align-items:center;justify-content:flex-end;min-width:180px}
+.footerMark img{height:24px;width:auto;opacity:.92}
+.hl{display:inline-block;padding:2px 8px;border-radius:999px;background:var(--soft2);border:1px solid #BDECEF;color:var(--primary);font-weight:800}
+.hl.purple{background:#F4EEFF;border-color:#D7C5FF}
+.hl.teal{background:#EAFDFC;border-color:#BDECEF}
+.key{color:var(--highlight);font-weight:800}
+.emph{color:var(--primary);font-weight:700}
+.contactLogo{height:36px;width:auto;display:block;margin-bottom:16px;filter:brightness(0) invert(1)}
+.nav{display:flex;gap:10px;align-items:center}
+.pill{
+  border:1px solid var(--line);border-radius:999px;padding:9px 14px;background:#fff;color:var(--primary);
+  font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:7px;white-space:nowrap
+}
+.pill.primary{background:var(--highlight);border-color:var(--highlight);color:#fff}
+.pill.teal{background:var(--secondary);border-color:var(--secondary);color:#fff}
+.pill.soft{background:var(--soft2);border-color:#BDECEF;color:var(--primary)}
+.stage{position:relative;height:100%;overflow:hidden}
+.slide{position:absolute;inset:0;padding:52px 72px 42px;display:none}
+.slide.active{display:block;animation:enter .32s ease both}
+@keyframes enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+h1,h2,h3,h4{font-family:Nunito,Roboto,sans-serif;margin:0;color:var(--primary);line-height:1.04}
+h1{font-size:60px;letter-spacing:-1.25px;max-width:980px}
+h2{font-size:40px;letter-spacing:-.8px;margin-bottom:18px;line-height:1.08}
+h3{font-size:22px;margin-bottom:12px;line-height:1.14}
+h4{font-size:16px;line-height:1.18}
+.subtitle{font-size:19px;color:var(--muted);line-height:1.48;max-width:900px;margin-top:22px}
+.eyebrow{font-size:13px;text-transform:uppercase;letter-spacing:.16em;color:var(--highlight);font-weight:800;margin-bottom:14px}
+.grid{display:grid;gap:18px}
+.grid.two{grid-template-columns:1fr 1fr}
+.grid.three{grid-template-columns:repeat(3,1fr)}
+.grid.four{grid-template-columns:repeat(4,1fr)}
+.card{
+  background:rgba(255,255,255,.92);border:1px solid rgba(62,89,114,.12);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)
+}
+.card.compact{padding:18px;border-radius:22px}
+.card.teal{background:linear-gradient(135deg,#ffffff,#ECFAFB)}
+.card.purple{background:linear-gradient(135deg,#ffffff,#F4EEFF)}
+.card.dark{background:linear-gradient(135deg,var(--primary),#2B4055);color:white}
+.card.dark h2,.card.dark h3,.card.dark p,.card.dark li,.card.dark .small{color:white}
+.kpi{display:flex;align-items:center;gap:14px}
+.kpi .num{font-family:Nunito;font-size:42px;line-height:1;font-weight:800;color:var(--highlight)}
+.kpi .label{font-weight:700;color:var(--primary)}
+.card.dark .kpi .label{color:white}
+p{font-size:16px;line-height:1.5;margin:0;color:#42576b}
+.small{font-size:14px;color:var(--muted);line-height:1.35}
+.list{display:grid;gap:12px}
+.item{display:flex;gap:12px;align-items:flex-start}
+.dot{height:12px;width:12px;border-radius:50%;background:var(--secondary);margin-top:6px;flex:0 0 auto}
+.dot.purple{background:var(--highlight)}
+.dot.ok{background:var(--ok)}
+.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:22px}
+.flowCol{
+  border-radius:24px;background:#fff;border:1px solid var(--line);padding:16px;min-height:180px;
+  box-shadow:0 12px 26px rgba(62,89,114,.08);cursor:pointer;transition:.18s ease
+}
+.flowCol:hover,.flowCol.selected{transform:translateY(-5px);border-color:var(--secondary);box-shadow:0 18px 42px rgba(6,198,201,.18)}
+.flowCol .n{height:32px;width:32px;border-radius:12px;display:grid;place-items:center;background:var(--soft2);font-weight:900;color:var(--primary);margin-bottom:12px}
+.flowCol h4{margin:0 0 8px;color:var(--primary)}
+.flowCol p{font-size:12.5px;color:var(--muted)}
+.detailBox{margin-top:18px;border-left:5px solid var(--secondary);padding:18px 22px;background:#fff;border-radius:18px;box-shadow:0 10px 24px rgba(62,89,114,.08)}
+.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:24px}
+.step{background:#fff;border-radius:22px;padding:18px;border:1px solid var(--line);min-height:130px}
+.step b{font-family:Nunito;color:var(--primary)}
+.mockBrowser{background:#fff;border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);overflow:hidden}
+.browserTop{height:44px;background:#F2F6F9;display:flex;align-items:center;gap:8px;padding:0 18px}
+.circle{height:11px;width:11px;border-radius:50%;background:#CDD8E1}
+.screen{padding:22px}
+.boardCols{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}
+.boardMini{border-radius:14px;background:#F8FAFC;border:1px solid #E2EBF2;min-height:200px;padding:10px}
+.boardMini h5{font-size:11px;color:var(--primary);margin:0 0 8px;font-family:Nunito}
+.ticket{background:#fff;border:1px solid #E5EDF4;border-radius:12px;padding:8px;margin:8px 0;font-size:10px;color:#556b7c}
+.ticket.auto{border-left:4px solid var(--secondary)}
+.ticket.att{border-left:4px solid var(--highlight)}
+.ticket.para{border-left:4px solid var(--primary)}
+.ticket.sys{border-left:4px solid var(--ok)}
+table{width:100%;border-collapse:separate;border-spacing:0 8px;font-size:13px}
+th{color:var(--primary);font-weight:800;font-family:Nunito;text-align:left;padding:10px 12px}
+td{background:#fff;padding:12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{border-left:1px solid var(--line);border-radius:14px 0 0 14px;font-weight:800;color:var(--highlight)}
+td:last-child{border-right:1px solid var(--line);border-radius:0 14px 14px 0}
+.code{font-weight:900;color:var(--primary);font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-size:12.5px}
+.statusDone{color:var(--ok);font-weight:800}
+.tabs{display:flex;gap:10px;margin-bottom:14px}
+.tab{border:1px solid var(--line);background:#fff;color:var(--primary);font-weight:800;border-radius:999px;padding:10px 15px;cursor:pointer}
+.tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.codeGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.codeCard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px}
+.codeCard .code{display:block;margin-bottom:4px}
+.hidden{display:none!important}
+.footer{
+  display:flex;align-items:center;justify-content:space-between;padding:0 34px;
+  background:rgba(255,255,255,.66);border-top:1px solid rgba(62,89,114,.1);backdrop-filter:blur(14px)
+}
+.btn{border:0;background:var(--primary);color:white;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer;box-shadow:0 12px 24px rgba(62,89,114,.18)}
+.btn.secondary{background:var(--secondary)}
+.btn.outline{background:#fff;color:var(--primary);border:1px solid var(--line);box-shadow:none}
+.progress{height:8px;border-radius:999px;background:#E9EFF5;overflow:hidden;width:220px}
+.bar{height:100%;width:0;background:linear-gradient(90deg,var(--secondary),var(--highlight));transition:.2s ease}
+.slideNo{font-weight:800;color:var(--primary)}
+[contenteditable="true"]:focus{outline:2px solid rgba(141,99,239,.35);border-radius:8px;background:rgba(255,255,255,.35)}
+.contact{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:28px}
+@media(max-width:1100px){
+  h1{font-size:46px} h2{font-size:34px} .slide{padding:34px}
+  .grid.three,.grid.four,.timeline,.codeGrid,.boardCols,.flow{grid-template-columns:1fr 1fr}
+}
+@media print{
+  body{overflow:visible}.deck{display:block}.topbar,.footer{display:none}
+  .slide{position:relative;display:block;page-break-after:always;height:100vh}.editHint{display:none}
+}
+
+.splitInstructions{display:grid;grid-template-columns:1.08fr 1fr .72fr;gap:18px;margin-top:24px;align-items:stretch}
+.pinStack{display:grid;grid-template-rows:repeat(4,1fr);gap:14px}
+.pinCard{background:rgba(255,255,255,.92);border:1px solid rgba(62,89,114,.12);border-radius:24px;padding:18px;box-shadow:0 14px 36px rgba(62,89,114,.1)}
+.pinCard .miniEyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--highlight);font-weight:800;margin-bottom:8px}
+.pinCard p{font-size:14px;line-height:1.35}
+@media(max-width:1100px){.splitInstructions{grid-template-columns:1fr}.pinStack{grid-template-columns:1fr;grid-template-rows:none}}
+
+.ecoRow{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:16px;margin-top:20px}
+.ecoMini{background:rgba(255,255,255,.92);border:1px solid rgba(62,89,114,.12);border-radius:24px;padding:18px 20px;box-shadow:0 14px 32px rgba(62,89,114,.08)}
+.ecoMini.center{background:linear-gradient(135deg,var(--primary),#2B4055);color:#fff;border-color:transparent}
+.ecoMini.center h4,.ecoMini.center p{color:#fff}
+.ecoMini h4{margin:0 0 8px;font-size:18px;color:var(--primary)}
+.ecoMini p{font-size:14px;line-height:1.38;color:var(--muted)}
+.insightRow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.quoteBand{margin-top:18px;background:linear-gradient(135deg,#ffffff,#ECFAFB);border:1px solid #BDECEF;border-radius:22px;padding:16px 20px;box-shadow:0 10px 24px rgba(62,89,114,.08)}
+.quoteBand p{font-size:15px;color:var(--primary);font-style:italic}
+@media(max-width:1100px){.ecoRow,.insightRow{grid-template-columns:1fr}}
+
+.opModelStack{display:grid;grid-template-columns:1fr;gap:16px;margin-top:24px}
+.dualMini{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ecoRow.tight{margin-top:0}
+.kpiRingWrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+.ringCard{background:rgba(255,255,255,.92);border:1px solid rgba(62,89,114,.12);border-radius:26px;padding:22px;box-shadow:var(--shadow);display:flex;gap:18px;align-items:center}
+.ring{height:110px;width:110px;border-radius:50%;display:grid;place-items:center;position:relative;flex:0 0 auto}
+.ring::after{content:'';position:absolute;inset:14px;border-radius:50%;background:white}
+.ring span{position:relative;z-index:1;font-family:Nunito,Roboto,sans-serif;font-size:28px;font-weight:800;color:var(--primary)}
+.ring.auto{background:conic-gradient(var(--secondary) 0 44%, #E8EEF4 44% 100%)}
+.ring.human{background:conic-gradient(var(--highlight) 0 56%, #E8EEF4 56% 100%)}
+.miniStat{display:grid;gap:6px}
+.miniStat .over{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--highlight);font-weight:800}
+.miniStat h4{font-size:20px;color:var(--primary);margin:0}
+.miniStat p{font-size:14px;line-height:1.4}
+.sparkGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:18px}
+.chartCard{background:rgba(255,255,255,.92);border:1px solid rgba(62,89,114,.12);border-radius:26px;padding:22px;box-shadow:var(--shadow)}
+.barList{display:grid;gap:14px;margin-top:14px}
+.barRow{display:grid;grid-template-columns:180px 1fr 44px;gap:12px;align-items:center}
+.barLabel{font-size:13px;font-weight:700;color:var(--primary)}
+.barTrack{height:14px;background:#EAF0F5;border-radius:999px;overflow:hidden}
+.barFill{height:100%;border-radius:999px}
+.barFill.teal{background:linear-gradient(90deg,var(--secondary),#57E0E2)}
+.barFill.purple{background:linear-gradient(90deg,var(--highlight),#AA84FF)}
+.barFill.primary{background:linear-gradient(90deg,var(--primary),#557692)}
+.dashGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
+.dashMini{background:rgba(255,255,255,.92);border:1px solid rgba(62,89,114,.12);border-radius:22px;padding:18px;box-shadow:0 14px 32px rgba(62,89,114,.08)}
+.dashMini .big{font-family:Nunito,Roboto,sans-serif;font-size:38px;line-height:1;color:var(--primary);font-weight:800}
+.dashMini .meta{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.35}
+.signalGrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:18px}
+.signalCard{background:rgba(255,255,255,.92);border:1px solid rgba(62,89,114,.12);border-radius:24px;padding:20px;box-shadow:0 14px 32px rgba(62,89,114,.08)}
+.signalCard h4{font-size:18px;margin:0 0 12px}
+.signalCard ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.signalCard li{display:flex;align-items:flex-start;gap:10px;color:#42576b;font-size:14px;line-height:1.35}
+.signalCard li::before{content:'•';color:var(--secondary);font-size:22px;line-height:1;margin-top:-2px}
+.storyGrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+.storyCard{background:rgba(255,255,255,.92);border:1px solid rgba(62,89,114,.12);border-radius:24px;padding:22px;box-shadow:0 14px 32px rgba(62,89,114,.08)}
+.storyCard h3{margin-bottom:10px}
+.storyCard p{font-size:15px;line-height:1.45}
+.calloutBand{margin-top:18px;background:linear-gradient(135deg,#ffffff,#ECFAFB);border:1px solid #BDECEF;border-radius:24px;padding:18px 22px;box-shadow:0 10px 24px rgba(62,89,114,.08)}
+.calloutBand p{font-size:15px;color:var(--primary);line-height:1.45}
+@media(max-width:1100px){.dualMini,.kpiRingWrap,.sparkGrid,.dashGrid,.signalGrid,.storyGrid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<div class="deck">
+<header class="topbar">
+<div class="brand"><div class="brandText">McKinley Irvin</div><div class="brandDivider"></div><img alt="Legalboards logo" class="brandLogo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXgAAABZCAYAAAA0Gj+BAAABN2lDQ1BBZG9iZSBSR0IgKDE5OTgpAAAokZWPv0rDUBSHvxtFxaFWCOLgcCdRUGzVwYxJW4ogWKtDkq1JQ5ViEm6uf/oQjm4dXNx9AidHwUHxCXwDxamDQ4QMBYvf9J3fORzOAaNi152GUYbzWKt205Gu58vZF2aYAoBOmKV2q3UAECdxxBjf7wiA10277jTG+38yH6ZKAyNguxtlIYgK0L/SqQYxBMygn2oQD4CpTto1EE9AqZf7G1AKcv8ASsr1fBBfgNlzPR+MOcAMcl8BTB1da4Bakg7UWe9Uy6plWdLuJkEkjweZjs4zuR+HiUoT1dFRF8jvA2AxH2w3HblWtay99X/+PRHX82Vun0cIQCw9F1lBeKEuf1UYO5PrYsdwGQ7vYXpUZLs3cLcBC7dFtlqF8hY8Dn8AwMZP/fNTP8gAAAAJcEhZcwAACxMAAAsTAQCanBgAAAXRaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjYtYzE0NSA3OS4xNjM0OTksIDIwMTgvMDgvMTMtMTY6NDA6MjIgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE5IChXaW5kb3dzKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjEtMDYtMDJUMDE6NTU6MDgtMDM6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDIxLTA2LTAyVDAxOjU1OjQ2LTAzOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIxLTA2LTAyVDAxOjU1OjQ2LTAzOjAwIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo3Zjk3YjBjYy0yNzRmLTc1NDQtODE1My1kYjQ4OGEyZDg0OTYiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo0OTQwMWJiZS04OTgwLTlmNGUtOWViNi03NTg1ZTQwMjAzNTIiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1YWZhNjVjYy0wN2NlLTVjNGItYmE2NS1mNjIzMWI3MmIxOTUiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjVhZmE2NWNjLTA3Y2UtNWM0Yi1iYTY1LWY2MjMxYjcyYjE5NSIgc3RFdnQ6d2hlbj0iMjAyMS0wNi0wMlQwMTo1NTowOC0wMzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTkgKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo3Zjk3YjBjYy0yNzRmLTc1NDQtODE1My1kYjQ4OGEyZDg0OTYiIHN0RXZ0OndoZW49IjIwMjEtMDYtMDJUMDE6NTU6NDYtMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE5IChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1w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"/></div>
+<div class="nav">
+<span class="pill teal">Implemented live</span>
+<span class="pill soft">MI intake model</span>
+</div>
+</header>
+<main class="stage" id="stage">
+<section class="slide active">
+<div class="eyebrow" contenteditable="true">Pre-Filing &amp; Intake Workflow · Board: Pre-Filing and Case Setup</div>
+<h1 contenteditable="true">MI dissolution intake is <span class="key">live</span>, standardized, and ready to trust</h1>
+<p class="subtitle" contenteditable="true">One <span class="emph">firm wide intake model</span> now governs how dissolution matters open, route, and clear pre filing checks.</p>
+<div class="grid four" style="margin-top:40px">
+<div class="card compact"><div class="kpi"><div class="num">16</div><div><div class="label">live workflow items</div><p class="small">Automations, tasks, gates, and handoffs implemented</p></div></div></div>
+<div class="card compact"><div class="kpi"><div class="num">7</div><div><div class="label">automations</div><p class="small">Creation, document generation, moves, county routing, archive</p></div></div></div>
+<div class="card compact"><div class="kpi"><div class="num">9</div><div><div class="label">guided staff steps</div><p class="small">Attorney and paralegal tasks plus pre-filing gates</p></div></div></div>
+<div class="card compact"><div class="kpi"><div class="num">1</div><div><div class="label">safe entry point</div><p class="small">One intake logic for dissolution matters across all counties</p></div></div></div>
+</div>
+</section>
+<section class="slide">
+<div class="eyebrow" contenteditable="true">Firm operational model</div>
+<h2 contenteditable="true">What the MI intake operating model is actually doing</h2>
+<div class="opModelStack">
+  <div class="card dark">
+    <h3 contenteditable="true">Firm structure stays consistent</h3>
+    <div class="list">
+      <div class="item"><span class="dot"></span><p contenteditable="true">Every new dissolution matter enters the same <span class="emph">intake operating layer</span> first.</p></div>
+      <div class="item"><span class="dot"></span><p contenteditable="true">Opening documents are generated automatically so no one starts from scratch or rebuilds the same first step twice.</p></div>
+      <div class="item"><span class="dot"></span><p contenteditable="true">County, party posture, and routing flags stay visible without splitting intake into disconnected mini workflows.</p></div>
+      <div class="item"><span class="dot"></span><p contenteditable="true">The board standardizes how work starts before the county specific filing workflow takes over.</p></div>
+    </div>
+  </div>
+  <div class="dualMini">
+    <div class="card purple">
+      <h3 contenteditable="true">Legal judgment stays with the team</h3>
+      <div class="list">
+        <div class="item"><span class="dot purple"></span><p contenteditable="true">Attorneys control <span class="emph">jurisdiction</span>, <span class="emph">CIR</span>, and <span class="emph">temporary order</span> decisions.</p></div>
+        <div class="item"><span class="dot purple"></span><p contenteditable="true">Paralegals control client communication, Clio updates, and pre filing verification.</p></div>
+        <div class="item"><span class="dot purple"></span><p contenteditable="true">Special risk gates like DV or safety and jurisdiction verification are handled before filing begins.</p></div>
+      </div>
+    </div>
+    <div class="card teal">
+      <h3 contenteditable="true">Why that matters</h3>
+      <div class="list">
+        <div class="item"><span class="dot ok"></span><p contenteditable="true">The model creates <span class="emph">guardrails</span> without flattening legal judgment.</p></div>
+        <div class="item"><span class="dot ok"></span><p contenteditable="true">Leadership gets one operational language for how intake begins.</p></div>
+        <div class="item"><span class="dot ok"></span><p contenteditable="true">Staff can trust that the opening phase is visible, repeatable, and safer.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="ecoRow tight">
+    <div class="ecoMini"><h4 contenteditable="true">Clio</h4><p contenteditable="true">Practice management source. MI matter data starts here and triggers the intake workflow.</p></div>
+    <div class="ecoMini center"><h4 contenteditable="true">Legalboards</h4><p contenteditable="true">Workflow and automation engine. Legalboards translates Clio data into visible intake actions, role handoffs, and pre filing controls.</p></div>
+    <div class="ecoMini"><h4 contenteditable="true">iManage</h4><p contenteditable="true">Document destination for strategic work. Case planning and final planning records live where the team expects them.</p></div>
+  </div>
+</div>
+<div class="quoteBand"><p contenteditable="true"><b>Ecosystem insight:</b> Legalboards is the bridge between Clio matter data and MI strategy execution. It turns intake information into visible, trackable, and safer legal operations.</p></div>
+</section>
+<section class="slide">
+<div class="eyebrow" contenteditable="true">Implemented live</div>
+<h2 contenteditable="true">What has already been implemented</h2>
+<div class="timeline">
+<div class="step"><b contenteditable="true">1. Intake trigger</b><p class="small" contenteditable="true">When a dissolution matter is created in Clio, the card is created on the intake board automatically.</p></div>
+<div class="step"><b contenteditable="true">2. Opening documents</b><p class="small" contenteditable="true">Welcome Letter Template and Questionnaire Template are generated automatically in Clio Documents.</p></div>
+<div class="step"><b contenteditable="true">3. Attorney review logic</b><p class="small" contenteditable="true">Jurisdiction, CIR, strategy, and temp order decisions are built into the board flow.</p></div>
+<div class="step"><b contenteditable="true">4. Clio cleanup logic</b><p class="small" contenteditable="true">Custom fields and matter notes are updated in the correct stage instead of scattered across the matter.</p></div>
+<div class="step"><b contenteditable="true">5. Safe handoff</b><p class="small" contenteditable="true">Once intake is complete, the matter routes to the right county board and archives from the intake board.</p></div>
+</div>
+<div class="card teal" style="margin-top:24px">
+<p contenteditable="true"><b>Implementation status:</b> this presentation reflects the live intake build, not a draft proposal. Titles, codes, routing gates, and handoff logic were updated to match the implemented model.</p>
+</div><div class="insightRow">
+<div class="card compact"><p contenteditable="true"><b>Implementation status:</b> this presentation reflects the <span class="emph">live intake build</span>, not a draft proposal. Titles, codes, routing gates, and handoff logic now match the implemented model.</p></div>
+<div class="card compact"><p contenteditable="true"><b>Absolute reliability:</b> Welcome Letter and Questionnaire generation now happen the same way every time, which removes loose starts and inconsistent opening steps.</p></div>
+</div>
+<div class="quoteBand"><p contenteditable="true"><b>Risk mitigation:</b> pre filing work is now visible and gated. MI can distinguish a matter that is waiting, a matter that needs legal review, and a matter that is genuinely safe to hand off.</p></div>
+</section>
+<section class="slide">
+<div class="eyebrow" contenteditable="true">Board logic</div>
+<h2 contenteditable="true">How the board works from start to finish</h2>
+<div class="flow" id="flow">
+<div class="flowCol selected" data-detail="A new dissolution matter is created in Clio. The board card is created automatically. The Welcome Letter Template and Questionnaire Template generate automatically in Clio Documents. Opening tasks then fire from this starting point." data-title="New Matter Opened">
+<div class="n">1</div><h4>New Matter Opened</h4><p>Board entry point and opening automations.</p>
+</div>
+<div class="flowCol" data-detail="From the opening stage, the board assigns the four first tasks: D-PF-01 Jurisdiction Check, D-PF-02 Client Relationship Interview, D-PF-03 Send Welcome Letter + Questionnaire to Client, and D-PF-04 Case Planning." data-title="Opening Intake Tasks">
+<div class="n">2</div><h4>Opening Intake Tasks</h4><p>First task package begins.</p>
+</div>
+<div class="flowCol" data-detail="After the CIR and case planning work, the board runs D-PF-05 Update Custom Fields in Clio, D-PF-06 Emergency / Temp Orders — Determination, and D-PF-11 Update Matter Info. This stage organizes the matter before pre-filing routing." data-title="Attorney Intake Review">
+<div class="n">3</div><h4>Attorney Intake Review</h4><p>Attorney and paralegal review logic.</p>
+</div>
+<div class="flowCol" data-detail="Once D-PF-11 is complete, the card advances automatically. This stage runs D-PF-12 DV/Safety Flag — Attorney Review Gate and D-PF-13 Jurisdiction Verification — Pre-Filing Check." data-title="Case Strategy and Special Routing">
+<div class="n">4</div><h4>Case Strategy and Special Routing</h4><p>Safety and jurisdiction gates.</p>
+</div>
+<div class="flowCol" data-detail="After the required gates are cleared, the card advances automatically to Setup Complete — Ready for Filing. This is the intake exit state." data-title="Setup Complete — Ready for Filing">
+<div class="n">5</div><h4>Setup Complete — Ready for Filing</h4><p>Intake complete and cleared for handoff.</p>
+</div>
+<div class="flowCol" data-detail="Once setup is complete, Legalboards routes the matter to the right county board using County Jurisdiction, then archives the intake card. The intake board stays clean and the county workflow takes over." data-title="County Board Hand-Off">
+<div class="n">6</div><h4>County Board Hand-Off</h4><p>Right board, right county, clean handoff.</p>
+</div>
+</div>
+<div class="detailBox">
+<h3 id="detailTitle">New Matter Opened</h3>
+<p id="detailText">A new dissolution matter is created in Clio. The board card is created automatically. The Welcome Letter Template and Questionnaire Template generate automatically in Clio Documents. Opening tasks then fire from this starting point.</p>
+</div>
+</section>
+<section class="slide">
+<div class="eyebrow" contenteditable="true">User instructions</div>
+<h2 contenteditable="true">How the team should use the board and task logic</h2>
+<div class="splitInstructions">
+<div class="card teal">
+<h3 contenteditable="true">Board instructions</h3>
+<div class="list">
+<div class="item"><span class="dot ok"></span><p contenteditable="true"><span class="hl teal">AUTO</span> means no staff action is needed. Legalboards handles that step quietly in the background, like a very organized little robot with no interest in creating more meetings.</p></div>
+<div class="item"><span class="dot ok"></span><p contenteditable="true"><span class="hl purple">HAND OFF</span> means let Legalboards move the matter only after the required task logic is completed.</p></div>
+<div class="item"><span class="dot ok"></span><p contenteditable="true">Treat <span class="emph">Setup Complete — Ready for Filing</span> as the intake clearance point. That means the matter is clean enough to hand off safely.</p></div>
+<div class="item"><span class="dot ok"></span><p contenteditable="true">Once county routing happens, the intake card should no longer be the active place for work.</p></div>
+</div>
+</div>
+<div class="card purple">
+<h3 contenteditable="true">Task instructions</h3>
+<div class="list">
+<div class="item"><span class="dot purple"></span><p contenteditable="true"><span class="hl teal">The Workflow is Alive</span>. That means no staff action is needed. Legalboards knows what to do.</p></div>
+<div class="item"><span class="dot purple"></span><p contenteditable="true">Attorney tasks are the <span class="emph">legal judgment points</span>. Paralegal tasks are the <span class="emph">operational and file integrity points</span>.</p></div>
+<div class="item"><span class="dot purple"></span><p contenteditable="true">If the information is not in a <span class="hl">Clio Custom Field</span>, it is not considered actionable for moving the case forward.</p></div>
+<div class="item"><span class="dot purple"></span><p contenteditable="true">Any information that needs explanation, context, or manual clarification should be added to <span class="hl purple">Clio Notes</span>.</p></div>
+<div class="item"><span class="dot purple"></span><p contenteditable="true">Client information should not live only in your mind. Legalboards is smart, but sadly not psychic.</p></div>
+</div>
+</div>
+<div class="pinStack">
+<div class="pinCard teal">
+<div class="miniEyebrow" contenteditable="true">Pinpoint 1</div>
+<p contenteditable="true"><b>Before sending anything,</b> paralegals should always review the auto generated Welcome Letter and Questionnaire for merge field accuracy, especially attorney name, staff name, county, and case number.</p>
+</div>
+<div class="pinCard purple">
+<div class="miniEyebrow" contenteditable="true">Pinpoint 2</div>
+<p contenteditable="true"><b>When a task says notes, use notes.</b> Bankruptcy, support details, and other non field items belong in <span class="hl purple">Clio matter notes</span>, not in made up custom fields that will only confuse the file later.</p>
+</div>
+<div class="pinCard">
+<div class="miniEyebrow" contenteditable="true">Pinpoint 3</div>
+<p contenteditable="true"><b>Ready for Filing means something real.</b> Once a matter reaches that stage, the intake work is complete, routing checks are cleared, and the file is safe to hand into the county workflow.</p>
+</div>
+<div class="pinCard teal">
+<div class="miniEyebrow" contenteditable="true">Pinpoint 4</div>
+<p contenteditable="true"><b>Delete only what the instruction tells you to delete.</b> If a task says to delete when not applicable, that applies only to that branch task, not to the rest of intake logic.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide">
+<div class="eyebrow" contenteditable="true">Titles and codes</div>
+<h2 contenteditable="true">The live intake board now matches the implemented titles and codes</h2>
+<div class="mockBrowser" style="margin-top:18px">
+<div class="browserTop"><span class="circle"></span><span class="circle"></span><span class="circle"></span><span class="pill soft" style="margin-left:10px">Pre-Filing and Case Setup</span></div>
+<div class="screen">
+<div class="boardCols">
+<div class="boardMini">
+<h5>New Matter Opened</h5>
+<div class="ticket auto">AUTO · Add Card to Board</div>
+<div class="ticket auto">AUTO · Create Document: Welcome Letter Template</div>
+<div class="ticket auto">AUTO · Create Document: Questionnaire Template</div>
+<div class="ticket att">D-PF-01 · Jurisdiction Check</div>
+<div class="ticket att">D-PF-02 · Client Relationship Interview (CIR)</div>
+<div class="ticket para">D-PF-03 · Send Welcome Letter + Questionnaire to Client</div>
+<div class="ticket att">D-PF-04 · Case Planning</div>
+</div>
+<div class="boardMini">
+<h5>Attorney Intake Review</h5>
+<div class="ticket para">D-PF-05 · Update Custom Fields in Clio</div>
+<div class="ticket att">D-PF-06 · Emergency / Temp Orders — Determination</div>
+<div class="ticket para">D-PF-11 · Update Matter Info</div>
+</div>
+<div class="boardMini">
+<h5>Case Strategy and Special Routing</h5>
+<div class="ticket sys">AUTO · Move Card to Column 4</div>
+<div class="ticket att">D-PF-12 · DV/Safety Flag — Attorney Review Gate</div>
+<div class="ticket para">D-PF-13 · Jurisdiction Verification — Pre-Filing Check</div>
+</div>
+<div class="boardMini">
+<h5>Setup Complete — Ready for Filing</h5>
+<div class="ticket sys">AUTO · Move Card to Column 5</div>
+<div class="ticket sys">AUTO · Move Card to County Board</div>
+</div>
+<div class="boardMini">
+<h5>Board Close-Out</h5>
+<div class="ticket sys">AUTO · Archive</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide">
+<div class="eyebrow" contenteditable="true">Code map</div>
+<h2 contenteditable="true">Quick view of the implemented logic stack</h2>
+<div class="tabs">
+<button class="tab active" data-filter="all">All</button>
+<button class="tab" data-filter="auto">Automations</button>
+<button class="tab" data-filter="task">Tasks</button>
+<button class="tab" data-filter="gate">Gates</button>
+</div>
+<div class="codeGrid" id="codeGrid">
+<div class="codeCard" data-kind="auto"><span class="code">AUTO</span><b>Add Card to Board</b><p class="small">Practice Area = Dissolution, any county.</p></div>
+<div class="codeCard" data-kind="auto"><span class="code">AUTO</span><b>Create Document: Welcome Letter Template</b><p class="small">Generated in Clio Documents.</p></div>
+<div class="codeCard" data-kind="auto"><span class="code">AUTO</span><b>Create Document: Questionnaire Template</b><p class="small">Generated in Clio Documents.</p></div>
+<div class="codeCard" data-kind="task"><span class="code">D-PF-01</span><b>Jurisdiction Check</b><p class="small">Attorney · 5 days</p></div>
+<div class="codeCard" data-kind="task"><span class="code">D-PF-02</span><b>Client Relationship Interview (CIR)</b><p class="small">Attorney · 30 days</p></div>
+<div class="codeCard" data-kind="task"><span class="code">D-PF-03</span><b>Send Welcome Letter + Questionnaire to Client</b><p class="small">Paralegal · 2 days</p></div>
+<div class="codeCard" data-kind="task"><span class="code">D-PF-04</span><b>Case Planning</b><p class="small">Attorney · 15 days</p></div>
+<div class="codeCard" data-kind="task"><span class="code">D-PF-05</span><b>Update Custom Fields in Clio</b><p class="small">Paralegal · 1 day</p></div>
+<div class="codeCard" data-kind="task"><span class="code">D-PF-06</span><b>Emergency / Temp Orders — Determination</b><p class="small">Attorney · 1 day</p></div>
+<div class="codeCard" data-kind="task"><span class="code">D-PF-11</span><b>Update Matter Info</b><p class="small">Paralegal · 5 days</p></div>
+<div class="codeCard" data-kind="gate"><span class="code">D-PF-12</span><b>DV/Safety Flag — Attorney Review Gate</b><p class="small">Attorney gate before filing.</p></div>
+<div class="codeCard" data-kind="gate"><span class="code">D-PF-13</span><b>Jurisdiction Verification — Pre-Filing Check</b><p class="small">Paralegal pre-filing gate.</p></div>
+</div>
+</section>
+<section class="slide">
+<div class="eyebrow" contenteditable="true">Corrections applied</div>
+<h2 contenteditable="true">The live build reflects the audit fixes</h2>
+<table>
+<thead>
+<tr><th>Area</th><th>Implemented correction</th><th>Status</th></tr>
+</thead>
+<tbody>
+<tr><td>Welcome Letter Template</td><td>Uses Clio merge fields for client, attorney, paralegal, county, and case number.</td><td class="statusDone">Live</td></tr>
+<tr><td>Questionnaire Template</td><td>Generated in Clio as part of the opening intake package.</td><td class="statusDone">Live</td></tr>
+<tr><td>Case Planning</td><td>Corrected to iManage as the document source and upload destination.</td><td class="statusDone">Live</td></tr>
+<tr><td>Update Custom Fields in Clio</td><td>Non-existent fields were removed from custom field logic and pushed into matter notes.</td><td class="statusDone">Live</td></tr>
+<tr><td>Emergency / Temp Orders</td><td>Converted from fake CF logic to manual assignment of AUTO – Motion for TFLO task list when needed.</td><td class="statusDone">Live</td></tr>
+<tr><td>GAL handling</td><td>Moved out of intake and into the correct downstream motion logic.</td><td class="statusDone">Live</td></tr>
+</tbody>
+</table>
+</section>
+<section class="slide">
+<div class="eyebrow" contenteditable="true">McKinley Irvin strategic intake modernization</div>
+<h2 contenteditable="true">Intake is <span class="key">more controlled</span> and easier to trust</h2>
+<div class="kpiRingWrap">
+  <div class="ringCard">
+    <div class="ring auto"><span>44%</span></div>
+    <div class="miniStat">
+      <div class="over">Automation ratio</div>
+      <h4 contenteditable="true">Of intake touchpoints automated</h4>
+      <p contenteditable="true">7 of 16 live intake workflow items now run automatically before the county workflow even starts.</p>
+    </div>
+  </div>
+  <div class="ringCard">
+    <div class="ring human"><span>56%</span></div>
+    <div class="miniStat">
+      <div class="over">Guided human work</div>
+      <h4 contenteditable="true">Reserved for judgment and file integrity</h4>
+      <p contenteditable="true">9 of 16 live items stay with attorneys and paralegals where legal judgment and clean execution actually matter.</p>
+    </div>
+  </div>
+</div>
+<div class="sparkGrid">
+  <div class="chartCard">
+    <h3 contenteditable="true">Improvement snapshot</h3>
+    <div class="barList">
+      <div class="barRow"><div class="barLabel">Automation coverage</div><div class="barTrack"><div class="barFill teal" style="width:44%"></div></div><div class="small">44%</div></div>
+      <div class="barRow"><div class="barLabel">Human review coverage</div><div class="barTrack"><div class="barFill purple" style="width:56%"></div></div><div class="small">56%</div></div>
+      <div class="barRow"><div class="barLabel">Pre filing protection</div><div class="barTrack"><div class="barFill primary" style="width:67%"></div></div><div class="small">2 gates</div></div>
+      <div class="barRow"><div class="barLabel">Standardization reach</div><div class="barTrack"><div class="barFill teal" style="width:100%"></div></div><div class="small">100%</div></div>
+    </div>
+  </div>
+  <div class="chartCard">
+    <h3 contenteditable="true">What changed</h3>
+    <div class="list" style="margin-top:10px">
+      <div class="item"><span class="dot ok"></span><p contenteditable="true">Document creation is automatic at matter opening.</p></div>
+      <div class="item"><span class="dot ok"></span><p contenteditable="true">Judgment work and execution work are clearly separated.</p></div>
+      <div class="item"><span class="dot ok"></span><p contenteditable="true">County handoff happens only after intake logic is satisfied.</p></div>
+      <div class="item"><span class="dot ok"></span><p contenteditable="true">Leadership gets a cleaner, earlier signal of readiness.</p></div>
+    </div>
+  </div>
+</div>
+</section>
+<section class="slide">
+<div class="eyebrow" contenteditable="true">Leadership dashboard</div>
+<h2 contenteditable="true">A dashboard MI can actually use at a glance</h2>
+<div class="dashGrid">
+  <div class="dashMini"><div class="big">1</div><div class="label">single intake entry point</div><div class="meta">Every dissolution matter starts in the same operating model.</div></div>
+  <div class="dashMini"><div class="big">2</div><div class="label">pre filing gates</div><div class="meta">DV and jurisdiction verification are visible before county handoff.</div></div>
+  <div class="dashMini"><div class="big">7</div><div class="label">automated actions</div><div class="meta">Card creation, document generation, moves, routing, and archive logic.</div></div>
+  <div class="dashMini"><div class="big">9</div><div class="label">guided staff steps</div><div class="meta">Human work stays where legal analysis and file quality matter.</div></div>
+</div>
+<div class="signalGrid">
+  <div class="signalCard">
+    <h4 contenteditable="true">Visibility signals</h4>
+    <ul>
+      <li contenteditable="true">See who is waiting on client intake.</li>
+      <li contenteditable="true">See what is in attorney review.</li>
+      <li contenteditable="true">See what is truly ready for county handoff.</li>
+    </ul>
+  </div>
+  <div class="signalCard">
+    <h4 contenteditable="true">Leadership confidence</h4>
+    <ul>
+      <li contenteditable="true">Ready for Filing becomes an operationally meaningful stage.</li>
+      <li contenteditable="true">Bottlenecks stop hiding inside disconnected notes.</li>
+      <li contenteditable="true">Delay sources become easier to diagnose early.</li>
+    </ul>
+  </div>
+  <div class="signalCard">
+    <h4 contenteditable="true">Team benefit</h4>
+    <ul>
+      <li contenteditable="true">Less rebuilding of the same first steps.</li>
+      <li contenteditable="true">Cleaner expectations by role.</li>
+      <li contenteditable="true">Safer intake without adding more meetings.</li>
+    </ul>
+  </div>
+</div>
+</section>
+<section class="slide">
+<div class="eyebrow" contenteditable="true">Operational payoff</div>
+<h2 contenteditable="true">Why this helps MI perform more safely and consistently</h2>
+<div class="storyGrid">
+  <div class="storyCard">
+    <h3 contenteditable="true">Operational ROI</h3>
+    <p contenteditable="true">MI reduces rework at the front of the matter by automating document generation, routing, and intake handoff while keeping legal review in the right hands.</p>
+  </div>
+  <div class="storyCard">
+    <h3 contenteditable="true">Performance insight</h3>
+    <p contenteditable="true">The intake board now separates automation, attorney judgment, and paralegal execution into visible layers leadership can monitor at a glance.</p>
+  </div>
+  <div class="storyCard">
+    <h3 contenteditable="true">Confidence signal</h3>
+    <p contenteditable="true">Once a matter reaches Setup Complete and Ready for Filing, MI can treat that stage as operationally meaningful, not decorative.</p>
+  </div>
+  <div class="storyCard">
+    <h3 contenteditable="true">Live tracking benefit</h3>
+    <p contenteditable="true">Leadership can see which matters are waiting on client intake, sitting in legal review, or cleared for county handoff without hunting through disconnected notes.</p>
+  </div>
+</div>
+<div class="calloutBand"><p contenteditable="true"><b>Bottleneck insight:</b> the board makes delay sources visible. MI can distinguish administrative drag from real legal review time instead of treating both as the same blur. <br/><br/><b>Bottom line:</b> strategic intake modernization is not just about speed. It creates a cleaner signal of readiness, responsibility, and risk at the exact moment a matter begins.</p></div>
+</section>
+<section class="slide">
+<div class="eyebrow" contenteditable="true">Contact</div>
+<h2 contenteditable="true">Point of contact for the intake rollout</h2>
+<div class="contact">
+<div class="card dark"><img alt="Legalboards logo" class="contactLogo" src="data:image/png;base64,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"/>
+<h3 contenteditable="true">Bruna Gonçalves | Legal Project Manager</h3>
+<p contenteditable="true" style="margin-top:12px">Legalboards</p>
+<p contenteditable="true" style="margin-top:6px">bruna@legalboards.com</p>
+<p class="small" contenteditable="true" style="margin-top:18px">Use this contact for intake workflow questions, wording adjustments, live walkthrough alignment, and operational follow-up on the MI dissolution rollout.</p>
+</div>
+<div class="card teal">
+<h3 contenteditable="true">Final message</h3>
+<p contenteditable="true">The intake build is now live, instructive, and operationally safer. The board tells the team what needs to happen, the tasks tell each role what to do, and the dashboard view gives MI a cleaner sense of control at the exact moment cases start.</p>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer">
+<div style="display:flex;align-items:center;gap:14px">
+<button class="btn outline" id="prev">Back</button>
+<button class="btn" id="next">Next</button>
+<span class="slideNo" id="slideNo">1 / 10</span>
+</div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div class="footerMark"><img alt="Legalboards logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXgAAABZCAYAAAA0Gj+BAAABN2lDQ1BBZG9iZSBSR0IgKDE5OTgpAAAokZWPv0rDUBSHvxtFxaFWCOLgcCdRUGzVwYxJW4ogWKtDkq1JQ5ViEm6uf/oQjm4dXNx9AidHwUHxCXwDxamDQ4QMBYvf9J3fORzOAaNi152GUYbzWKt205Gu58vZF2aYAoBOmKV2q3UAECdxxBjf7wiA10277jTG+38yH6ZKAyNguxtlIYgK0L/SqQYxBMygn2oQD4CpTto1EE9AqZf7G1AKcv8ASsr1fBBfgNlzPR+MOcAMcl8BTB1da4Bakg7UWe9Uy6plWdLuJkEkjweZjs4zuR+HiUoT1dFRF8jvA2AxH2w3HblWtay99X/+PRHX82Vun0cIQCw9F1lBeKEuf1UYO5PrYsdwGQ7vYXpUZLs3cLcBC7dFtlqF8hY8Dn8AwMZP/fNTP8gAAAAJcEhZcwAACxMAAAsTAQCanBgAAAXRaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjYtYzE0NSA3OS4xNjM0OTksIDIwMTgvMDgvMTMtMTY6NDA6MjIgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE5IChXaW5kb3dzKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjEtMDYtMDJUMDE6NTU6MDgtMDM6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDIxLTA2LTAyVDAxOjU1OjQ2LTAzOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIxLTA2LTAyVDAxOjU1OjQ2LTAzOjAwIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo3Zjk3YjBjYy0yNzRmLTc1NDQtODE1My1kYjQ4OGEyZDg0OTYiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo0OTQwMWJiZS04OTgwLTlmNGUtOWViNi03NTg1ZTQwMjAzNTIiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1YWZhNjVjYy0wN2NlLTVjNGItYmE2NS1mNjIzMWI3MmIxOTUiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjVhZmE2NWNjLTA3Y2UtNWM0Yi1iYTY1LWY2MjMxYjcyYjE5NSIgc3RFdnQ6d2hlbj0iMjAyMS0wNi0wMlQwMTo1NTowOC0wMzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTkgKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo3Zjk3YjBjYy0yNzRmLTc1NDQtODE1My1kYjQ4OGEyZDg0OTYiIHN0RXZ0OndoZW49IjIwMjEtMDYtMDJUMDE6NTU6NDYtMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE5IChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1w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"/></div>
+</footer>
+</div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let i=0;
+function show(n){
+  i=(n+slides.length)%slides.length;
+  slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+  document.getElementById('slideNo').textContent=(i+1)+' / '+slides.length;
+  document.getElementById('bar').style.width=((i+1)/slides.length*100)+'%';
+}
+document.getElementById('next').onclick=()=>show(i+1);
+document.getElementById('prev').onclick=()=>show(i-1);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='PageDown')show(i+1);
+  if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+});
+show(0);
+
+document.querySelectorAll('.flowCol').forEach(col=>col.addEventListener('click',()=>{
+  document.querySelectorAll('.flowCol').forEach(c=>c.classList.remove('selected'));
+  col.classList.add('selected');
+  document.getElementById('detailTitle').textContent=col.dataset.title;
+  document.getElementById('detailText').textContent=col.dataset.detail;
+}));
+
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  const f=t.dataset.filter;
+  document.querySelectorAll('.codeCard').forEach(c=>c.classList.toggle('hidden',f!=='all'&&c.dataset.kind!==f));
+}));
+
+let editing=true;
+</script>
+</body>
+</html>
